@@ -1146,3 +1146,11 @@ class DataTest(unittest.TestCase):
             data, module, None, validate=False, types=(SNode.ANYDATA,)
         )
         self.assertIsInstance(dnode, DAnydata)
+
+    def test_dnode_dict_to_dnode_ignore_none(self):
+        data = {"yolo-nodetypes:ip-address": None}
+        module = self.ctx.load_module("yolo-nodetypes")
+        dnode = dict_to_dnode(
+            data, module, None, validate=False, store_only=True, ignore_none=True
+        )
+        self.assertIsNone(dnode)

@@ -1211,6 +1211,7 @@ def dict_to_dnode(
     store_only: bool = False,
     types: Optional[Tuple[int, ...]] = None,
     anydata_fmt: str = "json",
+    ignore_none: bool = False,
 ) -> Optional[DNode]:
     """
     Convert a python dictionary to a DNode object given a YANG module object. The return
@@ -1239,6 +1240,8 @@ def dict_to_dnode(
         Data represents notification parameters.
     :arg store_only:
         Data are being stored regardless of type validation (length, range, pattern, etc.)
+    :arg ignore_none:
+        Whether to ignore None values in dict or not
     """
     if not dic:
         return None
@@ -1414,6 +1417,8 @@ def dict_to_dnode(
                 continue
 
             value = _dic[key]
+            if value is None and ignore_none:
+                continue
 
             if isinstance(s, SLeaf):
                 _create_leaf(_parent, module, name, value, in_rpc_output)
