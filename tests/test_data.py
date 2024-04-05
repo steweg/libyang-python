@@ -1154,3 +1154,9 @@ class DataTest(unittest.TestCase):
             data, module, None, validate=False, store_only=True, ignore_none=True
         )
         self.assertIsNone(dnode)
+
+    def test_dnode_parse_json_null(self):
+        JSON = """{"yolo-nodetypes:ip-address": null}"""
+        dnode = self.ctx.parse_data_mem(JSON, "json", json_null=True)
+        dnode_names = [d.name() for d in dnode.siblings()]
+        self.assertFalse("ip-address" in dnode_names)
