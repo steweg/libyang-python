@@ -982,7 +982,6 @@ typedef struct pcre2_real_code pcre2_code;
 
 struct lysc_pattern {
     const char *expr;
-    pcre2_code *code;
     const char *dsc;
     const char *ref;
     const char *emsg;
