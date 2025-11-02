@@ -467,12 +467,11 @@ struct lysp_ext_instance {
     const char *argument;
     LY_VALUE_FORMAT format;
     void *prefix_data;
-    struct lysp_ext *def;
+    uintptr_t plugin_ref;
     void *parent;
     enum ly_stmt parent_stmt;
     uint64_t parent_stmt_index;
     uint16_t flags;
-    const struct lyplg_ext_record *record;
     struct lysp_ext_substmt *substmts;
     void *parsed;
     struct lysp_stmt *child;
@@ -1325,13 +1324,14 @@ struct lyd_leafref_links_rec {
 
 LY_ERR lyd_leafref_get_links(const struct lyd_node_term *, const struct lyd_leafref_links_rec **);
 LY_ERR lyd_leafref_link_node_tree(struct lyd_node *);
+struct lyplg_ext *lysc_get_ext_plugin(uintptr_t);
 const char *lyplg_ext_stmt2str(enum ly_stmt stmt);
 const struct lysp_module *lyplg_ext_parse_get_cur_pmod(const struct lysp_ctx *);
 struct ly_ctx *lyplg_ext_compile_get_ctx(const struct lysc_ctx *);
 void lyplg_ext_parse_log(const struct lysp_ctx *, const struct lysp_ext_instance *, LY_LOG_LEVEL, LY_ERR, const char *, ...);
 void lyplg_ext_compile_log(const struct lysc_ctx *, const struct lysc_ext_instance *, LY_LOG_LEVEL, LY_ERR, const char *, ...);
 LY_ERR lyplg_ext_parse_extension_instance(struct lysp_ctx *, struct lysp_ext_instance *);
-LY_ERR lyplg_ext_compile_extension_instance(struct lysc_ctx *, const struct lysp_ext_instance *, struct lysc_ext_instance *);
+LY_ERR lyplg_ext_compile_extension_instance(struct lysc_ctx *, const struct lysp_ext_instance *, struct lysc_ext_instance *, struct lysc_node *);
 void lyplg_ext_pfree_instance_substatements(const struct ly_ctx *ctx, struct lysp_ext_substmt *substmts);
 void lyplg_ext_cfree_instance_substatements(const struct ly_ctx *ctx, struct lysc_ext_substmt *substmts);
 typedef LY_ERR (*lyplg_ext_parse_clb)(struct lysp_ctx *, struct lysp_ext_instance *);
