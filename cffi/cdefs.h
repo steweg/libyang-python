@@ -1166,7 +1166,6 @@ union lyd_any_value {
     const char *str;
     const char *xml;
     const char *json;
-    char *mem;
 };
 
 struct lyd_node_any {
