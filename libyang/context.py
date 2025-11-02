@@ -575,7 +575,6 @@ class Context:
         in_type: IOType,
         in_data: Union[str, bytes, IO],
         parent: DNode = None,
-        lyb_mod_update: bool = False,
         no_state: bool = False,
         parse_only: bool = False,
         opaq: bool = False,
@@ -590,7 +589,6 @@ class Context:
         if self.cdata is None:
             raise RuntimeError("context already destroyed")
         parser_flgs = parser_flags(
-            lyb_mod_update=lyb_mod_update,
             no_state=no_state,
             parse_only=parse_only,
             opaq=opaq,
@@ -648,7 +646,6 @@ class Context:
         data: Union[str, bytes],
         fmt: str,
         parent: DNode = None,
-        lyb_mod_update: bool = False,
         no_state: bool = False,
         parse_only: bool = False,
         opaq: bool = False,
@@ -665,7 +662,6 @@ class Context:
             in_type=IOType.MEMORY,
             in_data=data,
             parent=parent,
-            lyb_mod_update=lyb_mod_update,
             no_state=no_state,
             parse_only=parse_only,
             opaq=opaq,
@@ -683,7 +679,6 @@ class Context:
         fileobj: IO,
         fmt: str,
         parent: DNode = None,
-        lyb_mod_update: bool = False,
         no_state: bool = False,
         parse_only: bool = False,
         opaq: bool = False,
@@ -700,7 +695,6 @@ class Context:
             in_type=IOType.FD,
             in_data=fileobj,
             parent=parent,
-            lyb_mod_update=lyb_mod_update,
             no_state=no_state,
             parse_only=parse_only,
             opaq=opaq,
