@@ -349,7 +349,7 @@ LY_ERR ly_out_new_file(FILE *, struct ly_out **);
 LY_ERR ly_out_new_fd(int, struct ly_out **);
 
 LY_ERR lyd_parse_data(const struct ly_ctx *, struct lyd_node *, struct ly_in *, LYD_FORMAT, uint32_t, uint32_t, struct lyd_node **);
-LY_ERR lyd_parse_op(const struct ly_ctx *, struct lyd_node *, struct ly_in *, LYD_FORMAT, enum lyd_type, struct lyd_node **, struct lyd_node **);
+LY_ERR lyd_parse_op(const struct ly_ctx *, struct lyd_node *, struct ly_in *, LYD_FORMAT, enum lyd_type, uint32_t, struct lyd_node **, struct lyd_node **);
 
 typedef enum {
    LYS_OUT_UNKNOWN,
