@@ -386,13 +386,15 @@ struct lys_module {
     const char *ref;
     struct lysp_module *parsed;
     struct lysc_module *compiled;
+    struct lysc_ext *extensions;
     struct lysc_ident *identities;
+    struct lysc_submodule *submodules;
     struct lys_module **augmented_by;
     struct lys_module **deviated_by;
     ly_bool implemented;
     ly_bool to_compile;
-    uint8_t latest_revision;
-    ...;
+    uint8_t version : 2;
+    uint8_t latest_revision : 4;
 };
 
 struct lysp_module {
