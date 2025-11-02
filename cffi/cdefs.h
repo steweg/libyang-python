@@ -783,7 +783,7 @@ struct lysp_node_augment {
 struct lysc_type {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
 };
@@ -859,7 +859,7 @@ struct lysc_ext {
     const char *name;
     const char *argname;
     struct lysc_ext_instance *exts;
-    struct lyplg_ext *plugin;
+    uintptr_t plugin_ref;
     struct lys_module *module;
     uint16_t flags;
 };
@@ -1016,7 +1016,7 @@ struct lysc_ident {
 struct lysc_type_num {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lysc_range *range;
@@ -1025,7 +1025,7 @@ struct lysc_type_num {
 struct lysc_type_dec {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     uint8_t fraction_digits;
@@ -1035,7 +1035,7 @@ struct lysc_type_dec {
 struct lysc_type_str {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lysc_range *length;
@@ -1057,7 +1057,7 @@ struct lysc_type_bitenum_item {
 struct lysc_type_enum {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lysc_type_bitenum_item *enums;
@@ -1066,7 +1066,7 @@ struct lysc_type_enum {
 struct lysc_type_bits {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lysc_type_bitenum_item *bits;
@@ -1075,7 +1075,7 @@ struct lysc_type_bits {
 struct lysc_type_leafref {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lyxp_expr *path;
@@ -1087,7 +1087,7 @@ struct lysc_type_leafref {
 struct lysc_type_identityref {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lysc_ident **bases;
@@ -1096,7 +1096,7 @@ struct lysc_type_identityref {
 struct lysc_type_instanceid {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     uint8_t require_instance;
@@ -1105,7 +1105,7 @@ struct lysc_type_instanceid {
 struct lysc_type_union {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lysc_type **types;
@@ -1114,7 +1114,7 @@ struct lysc_type_union {
 struct lysc_type_bin {
     const char *name;
     struct lysc_ext_instance *exts;
-    struct lyplg_type *plugin;
+    uintptr_t plugin_ref;
     LY_DATA_TYPE basetype;
     uint32_t refcount;
     struct lysc_range *length;
