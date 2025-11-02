@@ -367,6 +367,7 @@ LY_ERR lys_print_module(struct ly_out *, const struct lys_module *, LYS_OUTFORMA
 
 struct lysc_module {
 	struct lys_module *mod;
+	const char **features;
 	struct lysc_node *data;
 	struct lysc_node_action *rpcs;
 	struct lysc_node_notif *notifs;
@@ -609,6 +610,11 @@ struct lysp_node_container {
     ...;
 };
 
+struct lysc_value {
+    const char *str;
+    struct lysc_prefix *prefixes;
+};
+
 struct lysc_node_leaf {
     union {
         struct lysc_node node;
@@ -622,7 +628,7 @@ struct lysc_node_leaf {
     struct lysc_when **when;
     struct lysc_type *type;
     const char *units;
-    struct lyd_value *dflt;
+    struct lysc_value dflt;
     ...;
 };
 
@@ -652,7 +658,7 @@ struct lysc_node_leaflist {
     struct lysc_when **when;
     struct lysc_type *type;
     const char *units;
-    struct lyd_value **dflts;
+    struct lysc_value *dflts;
     uint32_t min;
     uint32_t max;
     ...;
@@ -1315,6 +1321,8 @@ struct lyd_attr {
 
 LY_ERR lyd_new_attr(struct lyd_node *, const char *, const char *, const char *, struct lyd_attr **);
 void lyd_free_attr_single(const struct ly_ctx *ctx, struct lyd_attr *attr);
+
+LY_ERR lyd_value_validate_dflt(const struct lysc_node *, const char *, struct lysc_prefix *, const struct lyd_node *, const struct lysc_type **, const char **);
 
 struct lyd_leafref_links_rec {
     const struct lyd_node_term *node;
